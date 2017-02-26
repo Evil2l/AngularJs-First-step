@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./node_modules/angular-material/angular-material.css">
+    <link rel="stylesheet" href="./node_modules/mdi/css/materialdesignicons.css">
+    <title>AngularJS</title>
+</head>
+<body ng-app="ngStart" ng-controller="startCtrl"  >
+
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <p>
+                <strong>Start</strong>
+            </p>
+            <md-button>
+                <md-icon class="mdi mdi-plus-circle"></md-icon>
+                Start
+            </md-button>
+        </div>
+    </md-toolbar>
+
+
+    <md-content class="md-padding" layout="row" layout-wrap>
+        <md-card ng-repeat="item in items " flex="30">
+            <img src="{{item.image}}" alt="">
+            <md-card-content>
+                <div ng-show="!showContact">
+                    <h2 class="md-title">
+                        {{item.title | uppercase}}
+                    </h2>
+                    <h2>{{item.posted | date:'longDate'}}</h2>
+                    <h3>
+                        {{item.price | currency}}
+                    </h3>
+                    <p>
+                        {{item.description }}
+                    </p>
+                </div>
+                <div>
+                    <p ng-show="showContact">
+                        <md-icon class="mdi mdi-account"></md-icon>
+                            {{item.contact.name}}
+                    </p>
+                    <p ng-show="showContact">
+                        <md-icon class="mdi mdi-email"> </md-icon>
+                            {{item.contact.email}}
+                    </p>
+                    <p ng-show="showContact">
+                        <md-icon class="mdi mdi-phone"></md-icon>
+                            {{item.contact.phone}}
+                    </p>
+                </div>
+                <div layout="row">
+                    <md-button ng-click="showContact=!showContact">Show {{ !showContact? "Contacts": "Details"}}</md-button>
+                    <md-button ng-click="showAdmin=!showAdmin">Admin {{ !showAdmin? 'Show': 'Hide'}}</md-button>
+                </div>
+                <div class="admin-tools" ng-if="showAdmin">
+                    <h3>Admin</h3>
+                    <div layout="row">
+                        <md-button class="md-primary">Edit</md-button>
+                        <md-button class="md-warn">Delete</md-button>
+                    </div>
+                </div>
+            </md-card-content>
+        </md-card>
+        <!--<div ng-controller="startCtrl" >-->
+            <!--<md-button class="md-primary">I will be blue (by default)</md-button>-->
+            <!--<div md-theme="altTheme">-->
+                <!--<md-button class="md-primary">I will be purple (altTheme)</md-button>-->
+            <!--</div>-->
+            <!--<home-world>Loading...</home-world>-->
+        <!--</div>-->
+    </md-content>
+
+
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./node_modules/angular-animate/angular-animate.js"></script>
+    <script src="./node_modules/angular-aria/angular-aria.js"></script>
+    <script src="./node_modules/angular-material/angular-material.js"></script>
+    <script src="./scripts/app.js"></script>
+    <!--CONTROLLERS-->
+    <script src="./components/start.ctr.js"></script>
+
+</body>
+</html>
